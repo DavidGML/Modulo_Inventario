@@ -15,6 +15,7 @@ namespace WS_TexasSales
 {
     public class Startup
     {
+        public string Cors = "MiCors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +26,14 @@ namespace WS_TexasSales
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(ops => {
+                ops.AddPolicy(name: Cors,
+                    builder => {
+                        builder.WithHeaders("*");
+                        builder.WithOrigins("*");
+                        builder.WithMethods("*");
+                    });
+            });
             services.AddControllers();
         }
 
@@ -39,6 +48,8 @@ namespace WS_TexasSales
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(Cors);
 
             app.UseAuthorization();
 

@@ -1,0 +1,11 @@
+<mat-drawer-container>
+  <mat-drawer #menu mode = "side">
+    <a [routerLink]="['/trademark']">Trademark</a>
+  </mat-drawer>
+
+  <div>
+    <button (click) ="menu.toggle();">Mostar</button>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+

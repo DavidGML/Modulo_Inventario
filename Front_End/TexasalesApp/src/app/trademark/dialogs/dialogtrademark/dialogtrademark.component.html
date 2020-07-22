@@ -1,0 +1,14 @@
+<h1 mat-dialog-title> {{ trademark !=null ? 'Edit File' : 'New File' }} </h1>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <label>Trademark Name </label>
+    <input matInput [(ngModel)]="tmName">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary"
+    (click)="trademark != null ? editTrademark() : addTrademark()">Save</button>
+  <button mat-raised-button (click)="close()" >Cancel</button>
+</div>
