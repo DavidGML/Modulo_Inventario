@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WS_TexasSales.Models;
 using WS_TexasSales.Models.Request;
 using WS_TexasSales.Models.Response;
@@ -15,6 +17,29 @@ namespace WS_TexasSales.Controllers
     [ApiController]
     public class TrademarkController : ControllerBase
     {
+        [Route("getarray")]
+        [HttpGet]
+        public IActionResult GetArrayById([FromBody] List<int> Id) 
+        {
+            using (var dbContext = new Models.texas_salesdbContext()) 
+            {
+                var lst = from db in dbContext.Trademark.ToList()
+                          where Id.Contains(db.TmId)
+                          select new TrademarkVM 
+                          { 
+                              TmId = db.TmId,
+                              TmName = db.TmName
+                          };
+                return Ok(lst);
+            }
+        }
+
+        public class TrademarkVM
+        {
+            public int TmId { get; set; }
+            public string TmName { get; set; }
+        }
+
         [HttpGet]
         public IActionResult Get()
         {

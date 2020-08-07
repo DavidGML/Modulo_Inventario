@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -26,6 +26,7 @@ export class DialogtrademarkComponent implements OnInit {
   ) {
       if(this.trademark != null){
         this.tmName = trademark.TmName;
+        console.log(trademark.TmName);
       }
    }
 

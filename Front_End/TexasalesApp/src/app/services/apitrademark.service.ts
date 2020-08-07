@@ -27,12 +27,12 @@ export class ApitrademarkService {
       return this._http.get<Response>(this.url);
     }
 
-    addTrademark( trademar: Trademark): Observable<Response> {
-      return this._http.post<Response>(this.url,trademar,httpOptions);
+    addTrademark( trademark: Trademark): Observable<Response> {
+      return this._http.post<Response>(this.url,trademark,httpOptions);
     }
 
-    editTrademark( trademar: Trademark): Observable<Response> {
-      return this._http.put<Response>(this.url,trademar,httpOptions);
+    editTrademark( trademark: Trademark): Observable<Response> {
+      return this._http.put<Response>(this.url,trademark,httpOptions);
     }
 
     deleteTrademark( tmId:number ): Observable<Response> {

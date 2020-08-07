@@ -47,7 +47,8 @@ export class TrademarkComponent implements OnInit {
   openEdit(trademark: Trademark){
     const dialogRef = this.dialog.open(DialogtrademarkComponent, {
       data: trademark
-    });
+    }
+    );
     dialogRef.afterClosed().subscribe( result => {
       this.getTrademark();
     });

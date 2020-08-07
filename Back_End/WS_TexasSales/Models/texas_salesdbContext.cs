@@ -18,13 +18,14 @@ namespace WS_TexasSales.Models
         public virtual DbSet<CarList> CarList { get; set; }
         public virtual DbSet<CarStok> CarStok { get; set; }
         public virtual DbSet<Trademark> Trademark { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-V-DACHI;DataBase=texas_salesdb; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost;Database=texas_salesdb;Trusted_Connection=True;");
             }
         }
 
@@ -101,6 +102,25 @@ namespace WS_TexasSales.Models
                     .IsRequired()
                     .HasColumnName("tm_name")
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.ToTable("users");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Pass)
+                    .IsRequired()
+                    .HasColumnName("pass")
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasColumnName("username")
+                    .HasMaxLength(150)
                     .IsUnicode(false);
             });
 
